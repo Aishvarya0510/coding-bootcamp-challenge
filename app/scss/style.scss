@@ -27,6 +27,10 @@ body {
     height: 657px;
     left: 0;
     bottom: 0;
+    @include mobile() {
+      width: 271px;
+      height: 152px;
+    }
   }
 }
 h1 {
@@ -35,6 +39,9 @@ h1 {
 
 .container {
   padding: 0 8rem;
+  @include mobile() {
+    padding: 0;
+  }
 }
 .slider {
   margin-top: 3.4375rem;
@@ -53,15 +60,29 @@ h1 {
       }
   }
   &__item__details {
+    @include mobile() {
+      order: 2;
+    }
     h1 {
       font-size: 2rem;
-      width: 653px;
+      width: 100%;
       z-index: 1;
       color: $txt-dark-blue;  
       font-weight: 300;
       position: relative;
       margin-bottom: 2.5rem;
+      line-height: 1.4;
 
+      @include mobile() {
+        font-size: 1.2rem;
+        white-space: normal;
+        margin-top: 4.5rem;
+        text-align: center;
+        word-break: break-word;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        max-width: 21rem;
+      }
 
       &::before {
         content: '';
@@ -74,6 +95,13 @@ h1 {
         position: absolute;
         left: 98px;
         top: -64px;
+
+        @include mobile() {
+          width: 58px;
+          height: 46px;
+          left: 8rem;
+          top: -37px;
+        }
       }
     
     }
@@ -82,36 +110,57 @@ h1 {
     color: $txt-dark-blue;
     font-weight: 700;
     margin-right: 0.5rem;
+    @include mobile() {
+      display: block;
+    }
   }
   &__details {
     color: $txt-grayish-blue;  
     font-weight: 500;
     margin: 0;
+    @include mobile() {
+      font-size: 1rem;
+      text-align: center;
+      line-height: 1.5;
+    }
   }
   .carousal {
     position: relative;
-  
+    
     &::after {
       content: '';
       background-image: url(../images/pattern-bg.svg);
       background-repeat: no-repeat;
       background-size: 100%;
       background-position: center bottom;
-      height: 551px;
+       height: 551px;
       width: 583px;
       position: absolute;
       top: -12%;
       z-index: -3;
       left: -32%;
+   
+      @include mobile() {
+        height: 329px;
+        width: 329px;
+        position: absolute;
+        top: -19%;
+        z-index: -3;
+        left: -18%;
+      }
     }
 
     &__img__wrapper {
       img {
         height: 455px;
         position: relative;
-        left: -16%;
+        left: -3%;
         z-index: -2;
         box-shadow: 0.5rem 2rem 24px 0rem rgba(67,55,101,0.15);
+        animation: floatAround 4s ease-in-out infinite;
+        @include mobile() {
+          height: 252px;
+        }
       }
     }
    
@@ -119,8 +168,13 @@ h1 {
   &__btn__wrapper {
     position: absolute;
     bottom: -1rem;
-    right: 25rem;
+    right: 20rem;
 
+    @include mobile() {
+      top: 14.5rem;
+      right: 11rem;
+    }
+   
     .btn {
       background-color: white;
       border: none;
@@ -136,12 +190,21 @@ h1 {
       &:hover {
         background-color: #f0f0f0;
       }
+      @include mobile() {
+        padding: 0.45rem;
+        width: 43px;
+        height: 39px;
+      }
     }
     .rotate-btn {
       transform: rotate(179deg);
     }
     .icon {
       height: 0.8rem;
+      @include mobile() {
+        height: 0.6rem;
+        width: 0.65rem;
+      }
     }
     .icon-next {
       transform: rotate(184deg);
@@ -150,5 +213,16 @@ h1 {
   .active {
     display: block;
     transform: scale(1);
+  }
+}
+@keyframes floatAround {
+  0% {
+    transform: translate(0) rotate(-.5deg);
+  }
+  50% {
+    transform: translateY(-.5rem) rotate(1deg);
+  }
+  100% {
+    transform: translate(0) rotate(-.5deg);
   }
 }
